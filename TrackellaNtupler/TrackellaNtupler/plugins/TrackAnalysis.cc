@@ -19,6 +19,11 @@
 
 #include "DataFormats/TrackReco/interface/Track.h"
 #include "DataFormats/TrackingRecHit/interface/TrackingRecHit.h"
+#include "DataFormats/TrackerRecHit2D/interface/SiPixelRecHit.h"
+#include "DataFormats/TrackerRecHit2D/interface/SiPixelRecHitCollection.h"
+#include "Geometry/TrackerGeometryBuilder/interface/TrackerGeometry.h"
+#include "Geometry/Records/interface/TrackerDigiGeometryRecord.h"
+#include "Geometry/TrackerGeometryBuilder/interface/PixelGeomDetUnit.h"
 
 #include "TrackellaNtupler/TrackellaNtupler/interface/TrackTree.hh"
 
@@ -67,40 +72,46 @@ void TrackAnalysis::analyze(const edm::Event& iEvent, const edm::EventSetup& iSe
    using namespace edm;
    
    ftree->Init();
-   
+
    iEvent.getByToken(generalTracksToken_,generalTracksHandle);
    
    const std::vector<reco::Track> &gt = *generalTracksHandle.product();
-     
+
+   ftree->ev_ntrk.push_back(gt.size());
+
    for( unsigned int it=0;it<gt.size();it++ )
      {
 	reco::Track trk = gt.at(it);
+			
+	ftree->trk_pt.push_back(trk.pt());
+
+	edm::RefToBase<TrajectorySeed> seedRef = trk.seedRef();
 	
 	for( trackingRecHit_iterator ih=trk.recHitsBegin();ih!=trk.recHitsEnd();++ih )
 	  {
 	     if( ! (*ih)->isValid() ) continue;
 	     
 	     if ( (*ih)->geographicalId().det() != DetId::Tracker ) continue;
+
+	     const TrackingRecHit &thit = **ih;
+	     const SiPixelRecHit* rmh = dynamic_cast<const SiPixelRecHit*>(&thit);
 	     
-	     if( (*ih)->hasPositionAndError() )
-	       {		  
-		  float xloc = (*ih)->localPosition().x();
-		  std::cout << xloc << std::endl;
+	     if( rmh )
+	       {	
+		  ftree->hit_detId.push_back(rmh->geographicalId().rawId());
+		  ftree->hit_localPos_x.push_back(rmh->localPosition().x());
+		  ftree->hit_localPos_y.push_back(rmh->localPosition().y());
+		  ftree->hit_localPosErr_xx.push_back(rmh->localPositionError().xx());
+		  ftree->hit_localPosErr_yy.push_back(rmh->localPositionError().yy());
+		  ftree->hit_globalPos_x.push_back(rmh->globalPosition().x());
+		  ftree->hit_globalPos_y.push_back(rmh->globalPosition().y());
+		  ftree->hit_globalPos_z.push_back(rmh->globalPosition().z());
+		  ftree->hit_globalPosErr_cxx.push_back(rmh->globalPositionError().cxx());
+		  ftree->hit_globalPosErr_cyy.push_back(rmh->globalPositionError().cyy());
+		  ftree->hit_globalPosErr_czz.push_back(rmh->globalPositionError().czz());
 	       }
-	     
-//	     if(!track->seedRef().isNull()) 
-//	     track->seedRef()->direction()
-	     
-//	     float yloc = transRecHit->localPosition().y();
-//	     float vxloc = transRecHit->localPositionError().xx();
-//	     float vyloc = transRecHit->localPositionError().yy();
-//	     float gX = transRecHit->globalPosition().x();
-//	     float gY = transRecHit->globalPosition().y();
-//	     float gZ = transRecHit->globalPosition().z();
 	  }
-     }   
-   
-//   ftree->primVtxX.push_back(primVtxX);
+     }
    
    ftree->tree->Fill();
 }

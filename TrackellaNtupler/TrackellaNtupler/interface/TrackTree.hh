@@ -22,6 +22,22 @@ class TrackTree
 
    void Init();
    void CreateBranches(int buffersize);
+   
+   std::vector<int> ev_ntrk;
+   
+   std::vector<float> trk_pt;
+   
+   std::vector<int> hit_detId;
+   std::vector<float> hit_localPos_x;
+   std::vector<float> hit_localPos_y;
+   std::vector<float> hit_localPosErr_xx;
+   std::vector<float> hit_localPosErr_yy;
+   std::vector<float> hit_globalPos_x;
+   std::vector<float> hit_globalPos_y;
+   std::vector<float> hit_globalPos_z;
+   std::vector<float> hit_globalPosErr_cxx;
+   std::vector<float> hit_globalPosErr_cyy;
+   std::vector<float> hit_globalPosErr_czz;
 };
 
 #endif
