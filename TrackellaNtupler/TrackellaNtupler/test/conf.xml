@@ -1,0 +1,46 @@
+<variables>
+    <var name="trk_n" save="1" mc="1" desc="Number of reconstructed tracks" type="std::vector &lt; int &gt;"></var>
+    <var name="trk_pt" save="1" mc="1" desc="Track pt" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_eta" save="1" mc="1" desc="Track eta" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_phi" save="1" mc="1" desc="Track phi" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_par" save="1" mc="1" desc="Track parameters idx=0..4" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_cov" save="1" mc="1" desc="Track 5D covariance matrix idx=j+i*5,cov(i,j)" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_vx" save="1" mc="1" desc="Associated vertex x position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_vy" save="1" mc="1" desc="Associated vertex y position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_vz" save="1" mc="1" desc="Associated vertex z position" type="std::vector &lt; float &gt;"></var>
+
+    <var name="trk_hit_n" save="1" mc="1" desc="Number of associated hits to the track" type="std::vector &lt; int &gt;"></var>
+    <var name="trk_hit_detId" save="1" mc="1" desc="Hit raw id" type="std::vector &lt; int &gt;"></var>
+    <var name="trk_hit_localPos_x" save="1" mc="1" desc="Hit local x position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_localPos_y" save="1" mc="1" desc="Hit local y position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_localPosErr_xx" save="1" mc="1" desc="Hit local x position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_localPosErr_yy" save="1" mc="1" desc="Hit local y position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPos_x" save="1" mc="1" desc="Hit global x position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPos_y" save="1" mc="1" desc="Hit global y position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPos_z" save="1" mc="1" desc="Hit global z position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPosErr_cxx" save="1" mc="1" desc="Hit global x position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPosErr_cyy" save="1" mc="1" desc="Hit global y position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_hit_globalPosErr_czz" save="1" mc="1" desc="Hit global z position error" type="std::vector &lt; float &gt;"></var>
+    
+    <var name="trk_seed_n" save="1" mc="1" desc="Number of associated seeds to the track" type="std::vector &lt; int &gt;"></var>
+    <var name="trk_seed_detId" save="1" mc="1" desc="Seed raw id" type="std::vector &lt; int &gt;"></var>
+    <var name="trk_seed_localPos_x" save="1" mc="1" desc="Seed local x position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_localPos_y" save="1" mc="1" desc="Seed local y position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_localPosErr_xx" save="1" mc="1" desc="Seed local x position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_localPosErr_yy" save="1" mc="1" desc="Seed local y position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPos_x" save="1" mc="1" desc="Seed global x position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPos_y" save="1" mc="1" desc="Seed global y position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPos_z" save="1" mc="1" desc="Seed global z position" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPosErr_cxx" save="1" mc="1" desc="Seed global x position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPosErr_cyy" save="1" mc="1" desc="Seed global y position error" type="std::vector &lt; float &gt;"></var>
+    <var name="trk_seed_globalPosErr_czz" save="1" mc="1" desc="Seed global z position error" type="std::vector &lt; float &gt;"></var>
+    
+    <var name="vtx_n" save="1" mc="1" desc="Number of reconstructed primary vertices" type="std::vector &lt; int &gt;"></var>
+    <var name="vtx_x" save="1" mc="1" desc="Vertex x position" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_y" save="1" mc="1" desc="Vertex y position" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_z" save="1" mc="1" desc="Vertex z position" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_xError" save="1" mc="1" desc="Vertex x position error" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_yError" save="1" mc="1" desc="Vertex y position error" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_zError" save="1" mc="1" desc="Vertex z position error" type="std::vector &lt; float &gt;"></var>
+    <var name="vtx_cov" save="1" mc="1" desc="Vertex 3D covariance matrix idx=j+i*3,cov(i,j)" type="std::vector &lt; float &gt;"></var>
+</variables>
