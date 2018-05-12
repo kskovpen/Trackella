@@ -2,7 +2,24 @@
 
 void TrackTree::Init()
 {
-   trk_n.clear();   
+   bs_x0 = DEFVAL;
+   bs_y0 = DEFVAL;
+   bs_z0 = DEFVAL;
+   bs_sigmaZ = DEFVAL;
+   bs_dxdz = DEFVAL;
+   bs_dydz = DEFVAL;
+   bs_BeamWidthX = DEFVAL;
+   bs_BeamWidthY = DEFVAL;
+   bs_x0Error = DEFVAL;
+   bs_y0Error = DEFVAL;
+   bs_z0Error = DEFVAL;
+   bs_sigmaZ0Error = DEFVAL;
+   bs_dxdzError = DEFVAL;
+   bs_dydzError = DEFVAL;
+   bs_BeamWidthXError = DEFVAL;
+   bs_BeamWidthYError = DEFVAL;
+   
+   trk_n.clear();
    trk_pt.clear();
    trk_eta.clear();
    trk_phi.clear();
@@ -11,6 +28,15 @@ void TrackTree::Init()
    trk_vx.clear();
    trk_vy.clear();
    trk_vz.clear();
+
+   trk_chi2.clear();
+   trk_ndof.clear();
+   trk_dxy.clear();
+   trk_dxyError.clear();
+   trk_dz.clear();
+   trk_dzError.clear();
+   trk_dxy_bs.clear();
+   trk_dz_bs.clear();
    
    trk_hit_n.clear();
    trk_hit_detId.clear();
@@ -49,7 +75,24 @@ void TrackTree::Init()
 }
 
 void TrackTree::CreateBranches(int buffersize = 32000)
-{
+{   
+   tree->Branch("bs_x0", "float", &bs_x0, buffersize);
+   tree->Branch("bs_y0", "float", &bs_y0, buffersize);
+   tree->Branch("bs_z0", "float", &bs_z0, buffersize);
+   tree->Branch("bs_sigmaZ", "float", &bs_sigmaZ, buffersize);
+   tree->Branch("bs_dxdz", "float", &bs_dxdz, buffersize);
+   tree->Branch("bs_dydz", "float", &bs_dydz, buffersize);
+   tree->Branch("bs_BeamWidthX", "float", &bs_BeamWidthX, buffersize);
+   tree->Branch("bs_BeamWidthY", "float", &bs_BeamWidthY, buffersize);
+   tree->Branch("bs_x0Error", "float", &bs_x0Error, buffersize);
+   tree->Branch("bs_y0Error", "float", &bs_y0Error, buffersize);
+   tree->Branch("bs_z0Error", "float", &bs_z0Error, buffersize);
+   tree->Branch("bs_sigmaZ0Error", "float", &bs_sigmaZ0Error, buffersize);
+   tree->Branch("bs_dxdzError", "float", &bs_dxdzError, buffersize);
+   tree->Branch("bs_dydzError", "float", &bs_dydzError, buffersize);
+   tree->Branch("bs_BeamWidthXError", "float", &bs_BeamWidthXError, buffersize);
+   tree->Branch("bs_BeamWidthYError", "float", &bs_BeamWidthYError, buffersize);
+   
    tree->Branch("trk_n", "std::vector<int>", &trk_n, buffersize);
    tree->Branch("trk_pt", "std::vector<float>", &trk_pt, buffersize);
    tree->Branch("trk_eta", "std::vector<float>", &trk_eta, buffersize);
@@ -59,6 +102,15 @@ void TrackTree::CreateBranches(int buffersize = 32000)
    tree->Branch("trk_vx", "std::vector<float>", &trk_vx, buffersize);
    tree->Branch("trk_vy", "std::vector<float>", &trk_vy, buffersize);
    tree->Branch("trk_vz", "std::vector<float>", &trk_vz, buffersize);
+
+   tree->Branch("trk_chi2", "std::vector<float>", &trk_chi2, buffersize);
+   tree->Branch("trk_ndof", "std::vector<float>", &trk_ndof, buffersize);
+   tree->Branch("trk_dxy", "std::vector<float>", &trk_dxy, buffersize);
+   tree->Branch("trk_dxyError", "std::vector<float>", &trk_dxyError, buffersize);
+   tree->Branch("trk_dz", "std::vector<float>", &trk_dz, buffersize);
+   tree->Branch("trk_dzError", "std::vector<float>", &trk_dzError, buffersize);
+   tree->Branch("trk_dxy_bs", "std::vector<float>", &trk_dxy_bs, buffersize);
+   tree->Branch("trk_dz_bs", "std::vector<float>", &trk_dz_bs, buffersize);
    
    tree->Branch("trk_hit_n", "std::vector<int>", &trk_hit_n, buffersize);
    tree->Branch("trk_hit_detId", "std::vector<int>", &trk_hit_detId, buffersize);

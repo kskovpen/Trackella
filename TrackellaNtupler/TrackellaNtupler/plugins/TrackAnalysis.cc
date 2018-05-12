@@ -19,6 +19,7 @@
 
 #include "DataFormats/TrackReco/interface/Track.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
+#include "DataFormats/BeamSpot/interface/BeamSpot.h"
 #include "DataFormats/TrackingRecHit/interface/TrackingRecHit.h"
 #include "DataFormats/TrackerRecHit2D/interface/SiPixelRecHit.h"
 #include "DataFormats/TrackerRecHit2D/interface/SiPixelRecHitCollection.h"
@@ -46,9 +47,11 @@ class TrackAnalysis : public edm::EDAnalyzer
    
    edm::EDGetTokenT<std::vector<reco::Track> > generalTracksToken_;
    edm::EDGetTokenT<std::vector<reco::Vertex> > offlinePrimaryVerticesToken_;
+   edm::EDGetTokenT<reco::BeamSpot> offlineBeamSpotToken_;
    
    edm::Handle<std::vector<reco::Track> > generalTracksHandle;
    edm::Handle<std::vector<reco::Vertex> > offlinePrimaryVerticesHandle;
+   edm::Handle<reco::BeamSpot> offlineBeamSpotHandle;
    
    TrackTree *ftree;
    
@@ -59,6 +62,7 @@ TrackAnalysis::TrackAnalysis(const edm::ParameterSet& iConfig)
 {
    generalTracksToken_    = consumes<std::vector<reco::Track> >(iConfig.getParameter<edm::InputTag>("generalTracksInput"));
    offlinePrimaryVerticesToken_    = consumes<std::vector<reco::Vertex> >(iConfig.getParameter<edm::InputTag>("offlinePrimaryVerticesInput"));
+   offlineBeamSpotToken_    = consumes<reco::BeamSpot>(iConfig.getParameter<edm::InputTag>("offlineBeamSpotInput"));
    
    TFile& f = fs->file();   
    f.SetCompressionAlgorithm(ROOT::kZLIB);
@@ -79,10 +83,29 @@ void TrackAnalysis::analyze(const edm::Event& iEvent, const edm::EventSetup& iSe
 
    iEvent.getByToken(generalTracksToken_,generalTracksHandle);
    iEvent.getByToken(offlinePrimaryVerticesToken_,offlinePrimaryVerticesHandle);
+   iEvent.getByToken(offlineBeamSpotToken_,offlineBeamSpotHandle);
    
    const std::vector<reco::Track> &gt = *generalTracksHandle.product();
    const std::vector<reco::Vertex> &pv = *offlinePrimaryVerticesHandle.product();
+   const reco::BeamSpot &bs = *offlineBeamSpotHandle.product();
 
+   ftree->bs_x0 = bs.x0();
+   ftree->bs_y0 = bs.y0();
+   ftree->bs_z0 = bs.z0();
+   ftree->bs_sigmaZ = bs.sigmaZ();
+   ftree->bs_dxdz = bs.dxdz();
+   ftree->bs_dydz = bs.dydz();
+   ftree->bs_BeamWidthX = bs.BeamWidthX();
+   ftree->bs_BeamWidthY = bs.BeamWidthY();
+   ftree->bs_x0Error = bs.x0Error();
+   ftree->bs_y0Error = bs.y0Error();
+   ftree->bs_z0Error = bs.z0Error();
+   ftree->bs_sigmaZ0Error = bs.sigmaZ0Error();
+   ftree->bs_dxdzError = bs.dxdzError();
+   ftree->bs_dydzError = bs.dydzError();
+   ftree->bs_BeamWidthXError = bs.BeamWidthXError();
+   ftree->bs_BeamWidthYError = bs.BeamWidthYError();
+   
    ftree->trk_n.push_back(gt.size());
    ftree->vtx_n.push_back(pv.size());
 
@@ -96,6 +119,15 @@ void TrackAnalysis::analyze(const edm::Event& iEvent, const edm::EventSetup& iSe
 	ftree->trk_pt.push_back(trk.pt());
 	ftree->trk_eta.push_back(trk.eta());
 	ftree->trk_phi.push_back(trk.phi());
+	
+	ftree->trk_chi2.push_back(trk.chi2());
+	ftree->trk_ndof.push_back(trk.ndof());
+	ftree->trk_dxy.push_back(trk.dxy());
+	ftree->trk_dxyError.push_back(trk.dxyError());
+	ftree->trk_dz.push_back(trk.dz());
+	ftree->trk_dzError.push_back(trk.dzError());
+	ftree->trk_dxy_bs.push_back(trk.dxy(bs.position()));
+	ftree->trk_dz_bs.push_back(trk.dz(bs.position()));
 
 	for(int ip=0;ip<5;ip++) ftree->trk_par.push_back(par(ip));
 	for(int ip=0;ip<5;ip++)
@@ -105,7 +137,7 @@ void TrackAnalysis::analyze(const edm::Event& iEvent, const edm::EventSetup& iSe
 	ftree->trk_vx.push_back(trk.vx());
 	ftree->trk_vy.push_back(trk.vy());
 	ftree->trk_vz.push_back(trk.vz());
-	
+		
 	edm::RefToBase<TrajectorySeed> seedRef = trk.seedRef();
 	unsigned int nSeed = seedRef->nHits();
 	

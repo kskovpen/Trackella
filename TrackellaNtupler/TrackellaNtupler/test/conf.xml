@@ -1,4 +1,21 @@
 <variables>
+   <var name="bs_x0" save="1" mc="1" desc="beam spot x position" type="float"></var>
+   <var name="bs_y0" save="1" mc="1" desc="beam spot y position" type="float"></var>
+   <var name="bs_z0" save="1" mc="1" desc="beam spot z position" type="float"></var>
+   <var name="bs_sigmaZ" save="1" mc="1" desc="sigma z" type="float"></var>
+   <var name="bs_dxdz" save="1" mc="1" desc="dxdz slope" type="float"></var>
+   <var name="bs_dydz" save="1" mc="1" desc="dydz slope" type="float"></var>
+   <var name="bs_BeamWidthX" save="1" mc="1" desc="beam width x" type="float"></var>
+   <var name="bs_BeamWidthY" save="1" mc="1" desc="beam width y" type="float"></var>
+   <var name="bs_x0Error" save="1" mc="1" desc="error on x" type="float"></var>
+   <var name="bs_y0Error" save="1" mc="1" desc="error on y" type="float"></var>
+   <var name="bs_z0Error" save="1" mc="1" desc="error on z" type="float"></var>
+   <var name="bs_sigmaZ0Error" save="1" mc="1" desc="error on sigma z" type="float"></var>
+   <var name="bs_dxdzError" save="1" mc="1" desc="error on dxdz" type="float"></var>
+   <var name="bs_dydzError" save="1" mc="1" desc="error on dydz" type="float"></var>
+   <var name="bs_BeamWidthXError" save="1" mc="1" desc="error on beam width x, assume error in x = y" type="float"></var>
+   <var name="bs_BeamWidthYError" save="1" mc="1" desc="error on beam width y, assume error in x = y" type="float"></var>
+
     <var name="trk_n" save="1" mc="1" desc="Number of reconstructed tracks" type="std::vector &lt; int &gt;"></var>
     <var name="trk_pt" save="1" mc="1" desc="Track pt" type="std::vector &lt; float &gt;"></var>
     <var name="trk_eta" save="1" mc="1" desc="Track eta" type="std::vector &lt; float &gt;"></var>
@@ -8,6 +25,15 @@
     <var name="trk_vx" save="1" mc="1" desc="Associated vertex x position" type="std::vector &lt; float &gt;"></var>
     <var name="trk_vy" save="1" mc="1" desc="Associated vertex y position" type="std::vector &lt; float &gt;"></var>
     <var name="trk_vz" save="1" mc="1" desc="Associated vertex z position" type="std::vector &lt; float &gt;"></var>
+    
+    <var name="trk_chi2" save="1" mc="1" desc="chi2" type="float"></var>
+    <var name="trk_ndof" save="1" mc="1" desc="ndof" type="float"></var>
+    <var name="trk_dxy" save="1" mc="1" desc="transverse impact parameter wrt primary vertex" type="float"></var>
+    <var name="trk_dxyError" save="1" mc="1" desc="error on dxy" type="float"></var>
+    <var name="trk_dz" save="1" mc="1" desc="longitudinal impact parameter wrt primary vertex" type="float"></var>
+    <var name="trk_dzError" save="1" mc="1" desc="error on dz" type="float"></var>
+    <var name="trk_dxy_bs" save="1" mc="1" desc="transverse impact parameter wrt beam spot" type="float"></var>
+    <var name="trk_dz_bs" save="1" mc="1" desc="longitudinal impact parameter wrt beam spot" type="float"></var>
 
     <var name="trk_hit_n" save="1" mc="1" desc="Number of associated hits to the track" type="std::vector &lt; int &gt;"></var>
     <var name="trk_hit_detId" save="1" mc="1" desc="Hit raw id" type="std::vector &lt; int &gt;"></var>
