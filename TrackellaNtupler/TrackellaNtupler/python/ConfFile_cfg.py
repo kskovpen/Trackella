@@ -42,7 +42,8 @@ process.options = cms.untracked.PSet(
 process.TrackTree = cms.EDAnalyzer('TrackAnalysis',
 
                    generalTracksInput = cms.InputTag("generalTracks::TrackTree"),
-                   offlinePrimaryVerticesInput = cms.InputTag("offlinePrimaryVertices::TrackTree")
+                   offlinePrimaryVerticesInput = cms.InputTag("offlinePrimaryVertices::TrackTree"),
+                   offlineBeamSpotInput = cms.InputTag("offlineBeamSpot::TrackTree")
 )
 
 process.p = cms.Path(process.RawToDigi*

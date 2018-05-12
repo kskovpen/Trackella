@@ -75,23 +75,23 @@ void TrackTree::Init()
 }
 
 void TrackTree::CreateBranches(int buffersize = 32000)
-{   
-   tree->Branch("bs_x0", "float", &bs_x0, buffersize);
-   tree->Branch("bs_y0", "float", &bs_y0, buffersize);
-   tree->Branch("bs_z0", "float", &bs_z0, buffersize);
-   tree->Branch("bs_sigmaZ", "float", &bs_sigmaZ, buffersize);
-   tree->Branch("bs_dxdz", "float", &bs_dxdz, buffersize);
-   tree->Branch("bs_dydz", "float", &bs_dydz, buffersize);
-   tree->Branch("bs_BeamWidthX", "float", &bs_BeamWidthX, buffersize);
-   tree->Branch("bs_BeamWidthY", "float", &bs_BeamWidthY, buffersize);
-   tree->Branch("bs_x0Error", "float", &bs_x0Error, buffersize);
-   tree->Branch("bs_y0Error", "float", &bs_y0Error, buffersize);
-   tree->Branch("bs_z0Error", "float", &bs_z0Error, buffersize);
-   tree->Branch("bs_sigmaZ0Error", "float", &bs_sigmaZ0Error, buffersize);
-   tree->Branch("bs_dxdzError", "float", &bs_dxdzError, buffersize);
-   tree->Branch("bs_dydzError", "float", &bs_dydzError, buffersize);
-   tree->Branch("bs_BeamWidthXError", "float", &bs_BeamWidthXError, buffersize);
-   tree->Branch("bs_BeamWidthYError", "float", &bs_BeamWidthYError, buffersize);
+{
+   tree->Branch("bs_x0", &bs_x0, "bs_x0/F", buffersize);
+   tree->Branch("bs_y0", &bs_y0, "bs_y0/F", buffersize);
+   tree->Branch("bs_z0", &bs_z0, "bs_z0/F", buffersize);
+   tree->Branch("bs_sigmaZ", &bs_sigmaZ, "bs_sigmaZ/F", buffersize);
+   tree->Branch("bs_dxdz", &bs_dxdz, "bs_dxdz/F", buffersize);
+   tree->Branch("bs_dydz", &bs_dydz, "bs_dydz/F", buffersize);
+   tree->Branch("bs_BeamWidthX", &bs_BeamWidthX, "bs_BeamWidthX/F", buffersize);
+   tree->Branch("bs_BeamWidthY", &bs_BeamWidthY, "bs_BeamWidthY/F", buffersize);
+   tree->Branch("bs_x0Error", &bs_x0Error, "bs_x0Error/F", buffersize);
+   tree->Branch("bs_y0Error", &bs_y0Error, "bs_y0Error/F", buffersize);
+   tree->Branch("bs_z0Error", &bs_z0Error, "bs_z0Error/F", buffersize);
+   tree->Branch("bs_sigmaZ0Error", &bs_sigmaZ0Error, "bs_sigmaZ0Error/F", buffersize);
+   tree->Branch("bs_dxdzError", &bs_dxdzError, "bs_dxdzError/F", buffersize);
+   tree->Branch("bs_dydzError", &bs_dydzError, "bs_dydzError/F", buffersize);
+   tree->Branch("bs_BeamWidthXError", &bs_BeamWidthXError, "bs_BeamWidthXError/F", buffersize);
+   tree->Branch("bs_BeamWidthYError", &bs_BeamWidthYError, "bs_BeamWidthYError/F", buffersize);
    
    tree->Branch("trk_n", "std::vector<int>", &trk_n, buffersize);
    tree->Branch("trk_pt", "std::vector<float>", &trk_pt, buffersize);
