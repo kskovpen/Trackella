@@ -2,6 +2,10 @@
 
 void TrackTree::Init()
 {
+   ev_run = DEFVAL;
+   ev_id = DEFVAL;
+   ev_lb = DEFVAL;
+   
    bs_x0 = DEFVAL;
    bs_y0 = DEFVAL;
    bs_z0 = DEFVAL;
@@ -76,6 +80,10 @@ void TrackTree::Init()
 
 void TrackTree::CreateBranches(int buffersize = 32000)
 {
+   tree->Branch("ev_run", &ev_run, "ev_run/I", buffersize);
+   tree->Branch("ev_id", &ev_id, "ev_id/I", buffersize);
+   tree->Branch("ev_lb", &ev_lb, "ev_lb/I", buffersize);
+   
    tree->Branch("bs_x0", &bs_x0, "bs_x0/F", buffersize);
    tree->Branch("bs_y0", &bs_y0, "bs_y0/F", buffersize);
    tree->Branch("bs_z0", &bs_z0, "bs_z0/F", buffersize);

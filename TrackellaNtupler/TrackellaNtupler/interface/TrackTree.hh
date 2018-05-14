@@ -23,6 +23,10 @@ class TrackTree
    void Init();
    void CreateBranches(int buffersize);
 
+   int ev_run;
+   int ev_id;
+   int ev_lb;
+   
    float bs_x0;
    float bs_y0;
    float bs_z0;

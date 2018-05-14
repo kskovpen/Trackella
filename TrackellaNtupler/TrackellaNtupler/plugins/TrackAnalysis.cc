@@ -81,6 +81,10 @@ void TrackAnalysis::analyze(const edm::Event& iEvent, const edm::EventSetup& iSe
    
    ftree->Init();
 
+   ftree->ev_run = iEvent.id().run();
+   ftree->ev_id = iEvent.id().event();
+   ftree->ev_lb = iEvent.id().luminosityBlock();
+   
    iEvent.getByToken(generalTracksToken_,generalTracksHandle);
    iEvent.getByToken(offlinePrimaryVerticesToken_,offlinePrimaryVerticesHandle);
    iEvent.getByToken(offlineBeamSpotToken_,offlineBeamSpotHandle);

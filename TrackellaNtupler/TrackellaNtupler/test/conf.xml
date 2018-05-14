@@ -1,4 +1,8 @@
 <variables>
+   <var name="ev_run" save="1" mc="1" desc="run number" type="int"></var>
+   <var name="ev_id" save="1" mc="1" desc="event number" type="int"></var>
+   <var name="ev_lb" save="1" mc="1" desc="lumi block" type="int"></var>
+
    <var name="bs_x0" save="1" mc="1" desc="beam spot x position" type="float"></var>
    <var name="bs_y0" save="1" mc="1" desc="beam spot y position" type="float"></var>
    <var name="bs_z0" save="1" mc="1" desc="beam spot z position" type="float"></var>
